@@ -1,0 +1,26 @@
+﻿@model BirthdayManagementSystem.Models.NombrePersonne
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Nombre Personne</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreAnniversereux)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreAnniversereux)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdNombrePersonne }) |
+    @Html.ActionLink("Retour", "Index")
+</p>

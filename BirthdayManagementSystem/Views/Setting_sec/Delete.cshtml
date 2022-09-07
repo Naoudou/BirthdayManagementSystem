@@ -1,0 +1,96 @@
+﻿@model BirthdayManagementSystem.Models.Setting
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Supprimer</h2>
+
+<h3>Voulez-vous vraiment supprimer ce paramètre?</h3>
+<div>
+    <h4>Setting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnivNaissance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnivNaissance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnivVieReligieuse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnivVieReligieuse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnivSacerdoce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnivSacerdoce)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnivDernierVoeux)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnivDernierVoeux)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Set1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Set1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Set2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Set2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeureDenvoie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeureDenvoie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeureDeReset)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeureDeReset)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StopAll)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StopAll)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Retour", "Index")
+        </div>
+    }
+</div>

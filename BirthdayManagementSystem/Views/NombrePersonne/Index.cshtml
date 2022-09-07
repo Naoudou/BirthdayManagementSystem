@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BirthdayManagementSystem.Models.NombrePersonne>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste</h2>
+
+@*<p>
+    @Html.ActionLink("Nouveau", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+           Nature (Plusieurs/1)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreAnniversereux)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdNombrePersonne }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdNombrePersonne }) |
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.IdNombrePersonne })*@
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<!-- begin breadcrumb -->
+<ol class="breadcrumb pull-right">
+    <li><a href="javascript:;">Home</a></li>
+    <li><a href="javascript:;">Dashboard</a></li>
+    <li class="active">Dashboard</li>
+</ol>
+<!-- end breadcrumb -->
+<!-- begin page-header -->
+<h1 class="page-header">Pour la plus grande gloire de Dieu<small></small></h1>
+<!-- end page-header -->
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-green">
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"></i></div>
+            <div class="stats-title">Nombre des compagnons Inscrits</div>
+            <div class="stats-number">@ViewBag.NombreTotal_sj</div>
+            <div class="stats-progress progress">
+                <div class="progress-bar" style="width: 70.1%;"></div>
+            </div>
+            <div class="stats-desc">Nombre des inscrits</div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-blue">
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-tags fa-fw"></i></div>
+            <div class="stats-title">Nombre des messages inscrits</div>
+            <div class="stats-number">@ViewBag.NombreMessage_anni</div>
+            <div class="stats-progress progress">
+                <div class="progress-bar" style="width: 40.5%;"></div>
+            </div>
+            <div class="stats-desc">Tout type de message confondu</div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-purple">
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-users fa-fw"></i></div>
+            <div class="stats-title">Nombre d'utilisateur</div>
+            <div class="stats-number">@ViewBag.NombreUtilisateur</div>
+            <div class="stats-progress progress">
+                <div class="progress-bar" style="width: 76.3%;"></div>
+            </div>
+            <div class="stats-desc">Ceux qui administre la plateforme</div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-black">
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-comments fa-fw"></i></div>
+            <div class="stats-title">Anniv du jour</div>
+            <div class="stats-number">@ViewBag.Nombre_anniv_du_jour</div>
+            <div class="stats-progress progress">
+                <div class="progress-bar" style="width: 54.9%;"></div>
+            </div>
+            <div class="stats-desc">Les élus du jour</div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+</div>
+<!-- end row -->
+<div class="row">
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+</div>
+<!-- begin row -->
+<div class="row">
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-green">
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"></i></div>
+            <div class="stats-title">Nombre des de jubilé sacerdoce</div>
+            <div class="stats-number">@ViewBag.Nombre_jubile_sacerdoce_du_jour</div>
+            <div class="stats-progress progress">
+                <div class="progress-bar" style="width: 70.1%;"></div>
+            </div>
+            <div class="stats-desc">Jubilé sacerdoce</div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-blue">
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-tags fa-fw"></i></div>
+            <div class="stats-title">Nombre de jubilé vie religieuse</div>
+            <div class="stats-number">@ViewBag.Nombre_jubile_vie_religieuse_du_jour</div>
+            <div class="stats-progress progress">
+                <div class="progress-bar" style="width: 40.5%;"></div>
+            </div>
+            <div class="stats-desc">Jubilé vie religieuse</div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-purple">
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-user-circle fa-fw"></i></div>
+            <div class="stats-title">Anniv dernierx voeux</div>
+            <div class="stats-number">@ViewBag.Nombre_jubile_vie_dernier_voeux_du_jour</div>
+            <div class="stats-progress progress">
+                <div class="progress-bar" style="width: 76.3%;"></div>
+            </div>
+            <div class="stats-desc">Annivesaire derniers voeux</div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+    <!-- begin col-3 -->
+    <div class="col-md-3 col-sm-6">
+        <div class="widget widget-stats bg-black">
+            <div class="stats-icon stats-icon-lg"><i class="fa fa-comments fa-fw"></i></div>
+            <div class="stats-title">Statut de la platforme</div>
+            <div class="stats-number">
+
+                @if (ViewBag.statut_platforme == 1)
+                {<b style="color:green">Marche</b> }
+                else
+                {<b style="color:red">Arrêt</b>}
+            </div>
+            <div class="stats-progress progress">
+                <div class="progress-bar" style="width: 54.9%;"></div>
+            </div>
+            <div class="stats-desc">Statut de la plateforme</div>
+        </div>
+    </div>
+    <!-- end col-3 -->
+   
+</div>
+<!-- end row -->
+

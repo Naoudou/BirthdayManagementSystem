@@ -1,0 +1,90 @@
+﻿@model BirthdayManagementSystem.Models.Setting
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Paramètre</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnivNaissance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnivNaissance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnivVieReligieuse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnivVieReligieuse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnivSacerdoce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnivSacerdoce)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnivDernierVoeux)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnivDernierVoeux)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Set1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Set1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Set2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Set2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeureDenvoie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeureDenvoie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HeureDeReset)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeureDeReset)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StopAll)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StopAll)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdSetting }) |
+    @Html.ActionLink("Retour", "Index")
+</p>

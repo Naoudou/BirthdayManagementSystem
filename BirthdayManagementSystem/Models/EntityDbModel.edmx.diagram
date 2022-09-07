@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d6e7404591e140758e34c9a4f72d1235" Name="Diagram1">
+        <EntityTypeShape EntityType="anniv_dbModel.Jesuite" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="anniv_dbModel.Message" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="anniv_dbModel.NombrePersonne" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="anniv_dbModel.Setting" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="anniv_dbModel.sysdiagram" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="anniv_dbModel.TypeMessage" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="anniv_dbModel.TypeUser" Width="1.5" PointX="2.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="anniv_dbModel.User" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="anniv_dbModel.FK_Message_NombrePersonne" ManuallyRouted="false" />
+        <AssociationConnector Association="anniv_dbModel.FK_Message_TypeMessage" ManuallyRouted="false" />
+        <AssociationConnector Association="anniv_dbModel.FK_User_TypeUser" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

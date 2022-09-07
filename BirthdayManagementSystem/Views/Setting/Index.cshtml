@@ -1,0 +1,81 @@
+﻿@model IEnumerable<BirthdayManagementSystem.Models.Setting>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste</h2>
+
+@*<p>
+    @Html.ActionLink("Nouveau", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+           Anniv Naissance
+        </th>
+        <th>
+            Anniv Vie Religieuse
+        </th>
+        <th>
+            Anniv Sacerdoce
+        </th>
+        <th>
+            Anniv DernierVoeux
+        </th>
+        @*<th>
+           Set1
+        </th>
+        <th>
+            Set2
+        </th>*@
+        <th>
+            Heure Envoie email
+        </th>
+        <th>
+            Heure De Reset
+        </th>
+        <th>
+            Tour arrêter
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnnivNaissance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnnivVieReligieuse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnnivSacerdoce)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnnivDernierVoeux)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Set1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Set2)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.HeureDenvoie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeureDeReset)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StopAll)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdSetting }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdSetting }) |
+            @*@Html.ActionLink("Supprimer", "Delete", new { id=item.IdSetting })*@
+        </td>
+    </tr>
+}
+
+</table>

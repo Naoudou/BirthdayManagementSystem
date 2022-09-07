@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BirthdayManagementSystem.Models.TypeUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste</h2>
+
+<p>
+    @Html.ActionLink("Nouveau", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Label)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Label)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdTypeUser }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdTypeUser }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdTypeUser })
+        </td>
+    </tr>
+}
+
+</table>

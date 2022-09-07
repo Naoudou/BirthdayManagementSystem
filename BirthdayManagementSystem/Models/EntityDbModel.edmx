@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="anniv_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Jesuite">
+          <Key>
+            <PropertyRef Name="IdJesuite" />
+          </Key>
+          <Property Name="IdJesuite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NomComplete" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateNassance" Type="date" Nullable="false" />
+          <Property Name="EntreeNoviciat" Type="date" />
+          <Property Name="PremierVoeux" Type="date" />
+          <Property Name="Ordination" Type="date" />
+          <Property Name="DernierVoeux" Type="date" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="IdMessage" />
+          </Key>
+          <Property Name="IdMessage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titre" Type="text" />
+          <Property Name="CorpsMessage" Type="text" Nullable="false" />
+          <Property Name="CorpsMessage2" Type="text" />
+          <Property Name="IdTypeMessage" Type="int" Nullable="false" />
+          <Property Name="IdNombrePersonne" Type="int" />
+        </EntityType>
+        <EntityType Name="NombrePersonne">
+          <Key>
+            <PropertyRef Name="IdNombrePersonne" />
+          </Key>
+          <Property Name="IdNombrePersonne" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreAnniversereux" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="IdSetting" />
+          </Key>
+          <Property Name="IdSetting" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnnivNaissance" Type="int" />
+          <Property Name="AnnivVieReligieuse" Type="int" />
+          <Property Name="AnnivSacerdoce" Type="int" />
+          <Property Name="AnnivDernierVoeux" Type="int" />
+          <Property Name="Set1" Type="int" />
+          <Property Name="Set2" Type="int" />
+          <Property Name="HeureDenvoie" Type="datetime" />
+          <Property Name="HeureDeReset" Type="datetime" />
+          <Property Name="StopAll" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeMessage">
+          <Key>
+            <PropertyRef Name="IdTypeMessage" />
+          </Key>
+          <Property Name="IdTypeMessage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TypeUser">
+          <Key>
+            <PropertyRef Name="IdTypeUser" />
+          </Key>
+          <Property Name="IdTypeUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MotDePasse" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdTypeUser" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="reserveUser" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Message_NombrePersonne">
+          <End Role="NombrePersonne" Type="Self.NombrePersonne" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NombrePersonne">
+              <PropertyRef Name="IdNombrePersonne" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="IdNombrePersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_TypeMessage">
+          <End Role="TypeMessage" Type="Self.TypeMessage" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeMessage">
+              <PropertyRef Name="IdTypeMessage" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="IdTypeMessage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_TypeUser">
+          <End Role="TypeUser" Type="Self.TypeUser" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeUser">
+              <PropertyRef Name="IdTypeUser" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdTypeUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="anniv_dbModelStoreContainer">
+          <EntitySet Name="Jesuite" EntityType="Self.Jesuite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NombrePersonne" EntityType="Self.NombrePersonne" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Setting" EntityType="Self.Setting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeMessage" EntityType="Self.TypeMessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeUser" EntityType="Self.TypeUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Message_NombrePersonne" Association="Self.FK_Message_NombrePersonne">
+            <End Role="NombrePersonne" EntitySet="NombrePersonne" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_TypeMessage" Association="Self.FK_Message_TypeMessage">
+            <End Role="TypeMessage" EntitySet="TypeMessage" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_TypeUser" Association="Self.FK_User_TypeUser">
+            <End Role="TypeUser" EntitySet="TypeUser" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="anniv_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Jesuite">
+          <Key>
+            <PropertyRef Name="IdJesuite" />
+          </Key>
+          <Property Name="IdJesuite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NomComplete" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateNassance" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EntreeNoviciat" Type="DateTime" Precision="0" />
+          <Property Name="PremierVoeux" Type="DateTime" Precision="0" />
+          <Property Name="Ordination" Type="DateTime" Precision="0" />
+          <Property Name="DernierVoeux" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="IdMessage" />
+          </Key>
+          <Property Name="IdMessage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CorpsMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CorpsMessage2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdTypeMessage" Type="Int32" Nullable="false" />
+          <Property Name="IdNombrePersonne" Type="Int32" />
+          <NavigationProperty Name="NombrePersonne" Relationship="Self.FK_Message_NombrePersonne" FromRole="Message" ToRole="NombrePersonne" />
+          <NavigationProperty Name="TypeMessage" Relationship="Self.FK_Message_TypeMessage" FromRole="Message" ToRole="TypeMessage" />
+        </EntityType>
+        <EntityType Name="NombrePersonne">
+          <Key>
+            <PropertyRef Name="IdNombrePersonne" />
+          </Key>
+          <Property Name="IdNombrePersonne" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreAnniversereux" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_Message_NombrePersonne" FromRole="NombrePersonne" ToRole="Message" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="IdSetting" />
+          </Key>
+          <Property Name="IdSetting" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnnivNaissance" Type="Int32" />
+          <Property Name="AnnivVieReligieuse" Type="Int32" />
+          <Property Name="AnnivSacerdoce" Type="Int32" />
+          <Property Name="AnnivDernierVoeux" Type="Int32" />
+          <Property Name="Set1" Type="Int32" />
+          <Property Name="Set2" Type="Int32" />
+          <Property Name="HeureDenvoie" Type="DateTime" Precision="3" />
+          <Property Name="HeureDeReset" Type="DateTime" Precision="3" />
+          <Property Name="StopAll" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeMessage">
+          <Key>
+            <PropertyRef Name="IdTypeMessage" />
+          </Key>
+          <Property Name="IdTypeMessage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_Message_TypeMessage" FromRole="TypeMessage" ToRole="Message" />
+        </EntityType>
+        <EntityType Name="TypeUser">
+          <Key>
+            <PropertyRef Name="IdTypeUser" />
+          </Key>
+          <Property Name="IdTypeUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_TypeUser" FromRole="TypeUser" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MotDePasse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdTypeUser" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="reserveUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TypeUser" Relationship="Self.FK_User_TypeUser" FromRole="User" ToRole="TypeUser" />
+        </EntityType>
+        <Association Name="FK_Message_NombrePersonne">
+          <End Role="NombrePersonne" Type="Self.NombrePersonne" Multiplicity="0..1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NombrePersonne">
+              <PropertyRef Name="IdNombrePersonne" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="IdNombrePersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_TypeMessage">
+          <End Role="TypeMessage" Type="Self.TypeMessage" Multiplicity="1" />
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeMessage">
+              <PropertyRef Name="IdTypeMessage" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="IdTypeMessage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_TypeUser">
+          <End Role="TypeUser" Type="Self.TypeUser" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeUser">
+              <PropertyRef Name="IdTypeUser" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdTypeUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="anniv_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Jesuites" EntityType="Self.Jesuite" />
+          <EntitySet Name="Messages" EntityType="Self.Message" />
+          <EntitySet Name="NombrePersonnes" EntityType="Self.NombrePersonne" />
+          <EntitySet Name="Settings" EntityType="Self.Setting" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TypeMessages" EntityType="Self.TypeMessage" />
+          <EntitySet Name="TypeUsers" EntityType="Self.TypeUser" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Message_NombrePersonne" Association="Self.FK_Message_NombrePersonne">
+            <End Role="NombrePersonne" EntitySet="NombrePersonnes" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_TypeMessage" Association="Self.FK_Message_TypeMessage">
+            <End Role="TypeMessage" EntitySet="TypeMessages" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_TypeUser" Association="Self.FK_User_TypeUser">
+            <End Role="TypeUser" EntitySet="TypeUsers" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="anniv_dbModelStoreContainer" CdmEntityContainer="anniv_dbEntities">
+          <EntitySetMapping Name="Jesuites">
+            <EntityTypeMapping TypeName="anniv_dbModel.Jesuite">
+              <MappingFragment StoreEntitySet="Jesuite">
+                <ScalarProperty Name="IdJesuite" ColumnName="IdJesuite" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="NomComplete" ColumnName="NomComplete" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="DateNassance" ColumnName="DateNassance" />
+                <ScalarProperty Name="EntreeNoviciat" ColumnName="EntreeNoviciat" />
+                <ScalarProperty Name="PremierVoeux" ColumnName="PremierVoeux" />
+                <ScalarProperty Name="Ordination" ColumnName="Ordination" />
+                <ScalarProperty Name="DernierVoeux" ColumnName="DernierVoeux" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="anniv_dbModel.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="IdMessage" ColumnName="IdMessage" />
+                <ScalarProperty Name="Titre" ColumnName="Titre" />
+                <ScalarProperty Name="CorpsMessage" ColumnName="CorpsMessage" />
+                <ScalarProperty Name="CorpsMessage2" ColumnName="CorpsMessage2" />
+                <ScalarProperty Name="IdTypeMessage" ColumnName="IdTypeMessage" />
+                <ScalarProperty Name="IdNombrePersonne" ColumnName="IdNombrePersonne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NombrePersonnes">
+            <EntityTypeMapping TypeName="anniv_dbModel.NombrePersonne">
+              <MappingFragment StoreEntitySet="NombrePersonne">
+                <ScalarProperty Name="IdNombrePersonne" ColumnName="IdNombrePersonne" />
+                <ScalarProperty Name="NombreAnniversereux" ColumnName="NombreAnniversereux" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="anniv_dbModel.Setting">
+              <MappingFragment StoreEntitySet="Setting">
+                <ScalarProperty Name="IdSetting" ColumnName="IdSetting" />
+                <ScalarProperty Name="AnnivNaissance" ColumnName="AnnivNaissance" />
+                <ScalarProperty Name="AnnivVieReligieuse" ColumnName="AnnivVieReligieuse" />
+                <ScalarProperty Name="AnnivSacerdoce" ColumnName="AnnivSacerdoce" />
+                <ScalarProperty Name="AnnivDernierVoeux" ColumnName="AnnivDernierVoeux" />
+                <ScalarProperty Name="Set1" ColumnName="Set1" />
+                <ScalarProperty Name="Set2" ColumnName="Set2" />
+                <ScalarProperty Name="HeureDenvoie" ColumnName="HeureDenvoie" />
+                <ScalarProperty Name="HeureDeReset" ColumnName="HeureDeReset" />
+                <ScalarProperty Name="StopAll" ColumnName="StopAll" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="anniv_dbModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeMessages">
+            <EntityTypeMapping TypeName="anniv_dbModel.TypeMessage">
+              <MappingFragment StoreEntitySet="TypeMessage">
+                <ScalarProperty Name="IdTypeMessage" ColumnName="IdTypeMessage" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeUsers">
+            <EntityTypeMapping TypeName="anniv_dbModel.TypeUser">
+              <MappingFragment StoreEntitySet="TypeUser">
+                <ScalarProperty Name="IdTypeUser" ColumnName="IdTypeUser" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="anniv_dbModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="MotDePasse" ColumnName="MotDePasse" />
+                <ScalarProperty Name="IdTypeUser" ColumnName="IdTypeUser" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="reserveUser" ColumnName="reserveUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
